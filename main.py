@@ -101,13 +101,14 @@ scaler = StandardScaler()
 X_train_with_norm = scaler.fit_transform(X_train_with_norm)
 X_test_with_norm = scaler.transform(X_test_with_norm)
 
-
+# Çok Katmanlı YSA modeli
 model_with_norm = Sequential([
     Dense(128, activation='relu', input_shape=(X_train_with_norm.shape[1],)),
-    Dropout(0.5),
+    Dropout(0.5),  # overfitting'i engeller
     Dense(64, activation='relu'),
     Dense(1, activation='sigmoid')
 ])
+
 
 # Farklı optimizerlar: adam, sgd, rmsprop, adagrad, adamax
 # İkili sınıflandırma olduğu için binary_crossentropy kullandık
